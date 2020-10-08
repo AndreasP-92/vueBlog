@@ -5,7 +5,7 @@
         <v-toolbar-title>Artkler</v-toolbar-title>
       </v-toolbar>
       <v-list>
-        <v-list-tile v-for="(message, index) in $store.state.messages" :to="'message/' + index">
+        <v-list-tile v-for="(message, index) in $store.state.articles" :to="'message/' + index">
           <v-list-tile-content>
             <v-list-tile-title v-text="message"></v-list-tile-title>
           </v-list-tile-content>
@@ -17,9 +17,9 @@
 <script>
 
 export default {
-// GET ARTICLES
+// GET ARTICLES =========
   async created() {
-    this.$store.dispatch('getMessages');
+    this.$store.dispatch('getArticles');
   }
 };
 </script>

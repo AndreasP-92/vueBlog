@@ -7,49 +7,41 @@ const port = 3000;
 app.use(cors());
 app.use(bodyParser.json());
 
-var messages = [];
+var articles = [];
 var users   = [];
 
-// =========== GET MESSAGES ==========
-app.get('/messages', (req, res) => {
-    res.send(messages);
-    console.log(messages)
+// =========== GET ARTICLES ==========
+app.get('/articles', (req, res) => {
+    res.send(articles);
 });
 
-// =========== GET MESSAGES BY ID ==========
-app.get('/messages/:id', (req, res) => {
-    res.send(messages[req.params.id]);
-    // console.log(req.params)
+// =========== GET ARTICLES BY ID ==========
+app.get('/articles/:id', (req, res) => {
+    res.send(articles[req.params.id]);
 });
 
-// =========== POST MESSAGES ==========
-app.post('/messages', (req, res) => {
+// =========== POST ARTICLES ==========
+app.post('/articles', (req, res) => {
     let msg = req.body;
-    console.log(msg)
-    messages.push(msg.message);
+    articles.push(msg.articles);
     res.json(msg);
 });
-// =========== POST MESSAGES ==========
-app.post('/messages/edit', (req, res) => {
+// =========== POST ARTICLES ==========
+app.post('/articles/edit', (req, res) => {
     let msg = req.body;
-    let id  = msg.message.id;
-    let headline = msg.message.headline;
-    let text = msg.message.text;
+    let id  = msg.articles.id;
+    let headline = msg.articles.headline;
+    let text = msg.articles.text;
 
-    messages[id].headline = headline
-    messages[id].text = text
+    articles[id].headline = headline
+    articles[id].text = text
 
 });
-// =========== DELETE MESSAGES ==========
-app.post('/messages/delete', (req, res) => {
+// =========== DELETE ARTICLES ==========
+app.post('/articles/delete', (req, res) => {
     let msg = req.body;
-    let id  = msg.message.id;
-
-    messages.splice(id, 1)
-    
-    console.log("remove message===", messages)
-    console.log(id)
-
+    let id  = msg.articles.id;
+    articles.splice(id, 1)
 });
 
 // =========== POST USERS ==========

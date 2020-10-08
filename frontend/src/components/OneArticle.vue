@@ -9,8 +9,8 @@
           <v-toolbar-title class="justify-center">Opdater Artikel</v-toolbar-title>
           <v-spacer></v-spacer>
         </v-toolbar>
-          <v-text-field v-model="headline" :label="headline" required></v-text-field>
-          <v-textarea v-model="text" :label="text" required></v-textarea>
+          <v-text-field v-model="headline" required></v-text-field>
+          <v-textarea v-model="text" required></v-textarea>
           <v-btn @click="edit">Opdater</v-btn>
           <v-btn @click="deleteArticle">Slet Artikel</v-btn>
       </v-container>
@@ -26,15 +26,15 @@ import axios from "axios";
 export default {
   data() {
     return {
-      headline: "",
-      text: ""
+      headline  : "",
+      text      : ""
     };
   },
   async created() {
-    fetch = (await this.$store.dispatch("getMessage",this.$route.params.id)).data;
+    fetch = (await this.$store.dispatch("getArticle",this.$route.params.id)).data;
 
     this.headline = fetch.headline
-    this.text = fetch.text
+    this.text     = fetch.text
   },
   methods: {
 // EDIT ARTICLE ================

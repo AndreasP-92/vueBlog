@@ -6,55 +6,53 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        messages: [],
+        articles: [],
     },
 // MUTATIONS ===============
     mutations: {
-        updateMessages(state, messages) {
-            state.messages = messages;
+        updateArticles(state, articles) {
+            state.articles = articles;
         },
-        newMessage(state, message) {
-            state.messages.push(message);  
+        newArticle(state, articles) {
+            state.articles.push(articles);  
         },
-        updateMessage(state, updateMessage){
-            console.log("update message",updateMessage)
+        updateArticle(state, articles){
         }
     },
     actions: {
 // GET ARTICLE ===============
-        async getMessages({ commit }) {
-            let messages = (await axios.get("http://localhost:3000/messages")).data
+        async getArticles({ commit }) {
+            let articles = (await axios.get("http://localhost:3000/articles")).data
             let getHeadline = [];
-            for(let i = 0; i < messages.length; i++){
-                getHeadline.push(messages[i].headline);
+            for(let i = 0; i < articles.length; i++){
+                getHeadline.push(articles[i].headline);
             }
-            commit('updateMessages', getHeadline);
+            commit('updateArticles', getHeadline);
         },
 // NEW ARTICLE ===============
-        async newArticle({ commit }, messageBody) {
-            let msg = (await axios.post("http://localhost:3000/messages", {
-                message : messageBody
+        async newArticle({ commit }, newArticle) {
+            let msg = (await axios.post("http://localhost:3000/articles", {
+                articles : newArticle
             })).data;
-            console.log("new===",msg)
-            commit('newMessage', msg.message);
+            commit('newArticle', msg.articles);
         },
 // UPDATE ARTICLE ===============
         async updateArticle({ commit }, updateArticle) {
-            let msg = (await axios.post("http://localhost:3000/messages/edit", {
-                message : updateArticle
+            let msg = (await axios.post("http://localhost:3000/articles/edit", {
+                articles : updateArticle
             })).data;
-            commit('updateMessage', msg.message);
+            commit('updateArticle', msg.articles);
         },
 // DELETE ARTICLE ===============
         async deleteArticle({ commit }, deleteArticle) {
-            let msgg = (await axios.post("http://localhost:3000/messages/delete", {
-                message : deleteArticle
+            let msg = (await axios.post("http://localhost:3000/articles/delete", {
+                articles : deleteArticle
             })).data;
-            commit('updateMessage', msgg.message);
+            commit('updateArticle', msg.articles);
         },
 // GET ARTICLE ===============
-        async getMessage({ commit }, id) {
-            return axios.get(`http://localhost:3000/messages/${id}`)
+        async getArticle({ commit }, id) {
+            return axios.get(`http://localhost:3000/articles/${id}`)
         },
 // REGISTER USER ===============
         async register({ commit }, registerData) {

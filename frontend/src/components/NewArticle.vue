@@ -2,7 +2,7 @@
   <v-flex sm8 offset-sm2>
     <v-card>
       <v-toolbar dark>
-        <v-toolbar-title>New Message</v-toolbar-title>
+        <v-toolbar-title>Ny Artikel</v-toolbar-title>
       </v-toolbar>
         <v-form>
           <v-container>
@@ -26,8 +26,8 @@ import axios from "axios";
 export default {
   data() {
     return {
-      Headline: "",
-      Text: ""
+      Headline  : "",
+      Text      : ""
     };
   },
   beforeCreate: function () {
@@ -43,6 +43,7 @@ export default {
         } catch (error) {
           console.error(error);
         }
+        window.location.replace("/");
       },
   },
 };
