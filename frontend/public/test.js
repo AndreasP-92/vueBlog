@@ -1,0 +1,1 @@
+var editor = textboxio.replace('#article_description');
